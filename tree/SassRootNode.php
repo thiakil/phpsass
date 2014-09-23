@@ -37,6 +37,8 @@ class SassRootNode extends SassNode
    */
   public $extenders = array();
 
+  public $file_list = array();
+
   /**
    * Extend_parent - for resolving extends across imported files.
    */

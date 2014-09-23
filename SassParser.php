@@ -508,6 +508,7 @@ class SassParser
     }
     unset($source);
     $root = new SassRootNode($this);
+    $root->file_list[$this->filename] = filemtime($this->filename);
     $this->buildTree($root);
 
     if ($this->_tokenLevel != 0 && $this->debug) {

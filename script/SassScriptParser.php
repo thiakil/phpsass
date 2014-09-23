@@ -59,6 +59,7 @@ class SassScriptParser
    */
   public function interpolate($string, $context)
   {
+    $string = str_replace("\\\\", "\x1d", $string);
     for ($i = 0, $n = preg_match_all(self::MATCH_INTERPOLATION, $string, $matches); $i < $n; $i++) {
       $var = $this->evaluate($matches[1][$i], $context);
 
@@ -80,7 +81,7 @@ class SassScriptParser
       $matches[1][$i] = $val;
     }
 
-    return str_replace($matches[0], $matches[1], $string);
+    return str_replace("\x1d", "\\", str_replace($matches[0], $matches[1], $string));
   }
 
   /**

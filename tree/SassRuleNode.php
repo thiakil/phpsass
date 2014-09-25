@@ -127,7 +127,7 @@ class SassRuleNode extends SassNode
         $pattern = preg_quote($extendee);
       }
 
-      foreach (preg_grep('/'.$pattern.'/', $this->selectors) as $selector) {
+      foreach (preg_grep('/'.$pattern.'\\b/', $this->selectors) as $selector) {
         foreach ($extenders as $extender) {
           # first if establishes that we are using a placeholder and the extendee begins with a tag
           if ($extendee{0} == '%' && $selector{0} != '%' && preg_match('/(^| )[a-zA-Z][^%]*' . preg_quote($extendee) . '([^a-z0-9_-]|$)/', $selector)) {
